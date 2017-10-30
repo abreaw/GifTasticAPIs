@@ -32,22 +32,22 @@
 		 	</div>
 
 		 	<!-- Search bar / add button -->
-	 		<!-- form-inline ... lines all the fields / inputs up in one line ... media-center -- centers the form in the page header area -->
+	 		<!-- form-inline: lines all the fields / inputs up in one line ... media-center: centers the form in the page header area -->
 		 	<form class="form-inline media-center">   
 			 	<div class="form-group">
 
 					<!-- Label for input field -->
-			 		<label for="new-button">Add Gif Search Button: </label>
+			 		<label for="new-button">What do you want to add? </label>
 					<!-- Input field for new gif item -->
 			 		<input type="text" name="new-button" id="new-button" class="form-control">
 					<!-- button to submit the input for a new button -->
-			 		<button type="submit" class="btn" id="add-btn">Submit</button>
+			 		<button type="button" class="btn button-submit" id="add-btn">Add</button>  <!-- used type="button" as the "submit" makes the page reload and causes issues -->
 
 			 	</div>
 			 </form>
 
 		</div>
-		
+
 
 		<!-- Bootstrap row start -->
 		<div class="row">
@@ -70,6 +70,10 @@
 
 
 	</div>
+
+
+	<script type="text/javascript" src="assets/javascript/giphyapis.js"></script>
+
 
 </body>
 </html>
