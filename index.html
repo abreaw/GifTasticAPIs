@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>GifTastic Fun!</title>
+	
+	<!-- Latest compiled and minified Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	
+	<!-- Additional Style CSS -->
+	<link rel="stylesheet" href="assets/css/style.css"> 
+	
+	<!-- JQuery link -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+</head>
+<body>
+
+	<div class="container">
+		
+		<!-- Page Header -->
+		<div class="page-header">
+			<!-- <div class="media-left">
+				<img id="headimg" src="assets/images/news.png">
+			</div> -->
+			<div class="jumbotron page-header heading-styles">
+				<h1>Giphy Finds!</h1>
+		 	</div>
+
+		 	<!-- Search bar / add button -->
+	 		<!-- form-inline ... lines all the fields / inputs up in one line ... media-center -- centers the form in the page header area -->
+		 	<form class="form-inline media-center">   
+			 	<div class="form-group">
+
+					<!-- Label for input field -->
+			 		<label for="new-button">Add Gif Search Button: </label>
+					<!-- Input field for new gif item -->
+			 		<input type="text" name="new-button" id="new-button" class="form-control">
+					<!-- button to submit the input for a new button -->
+			 		<button type="submit" class="btn" id="add-btn">Submit</button>
+
+			 	</div>
+			 </form>
+
+		</div>
+		
+
+		<!-- Bootstrap row start -->
+		<div class="row">
+			
+			<!-- Bootstrap column for gifs to be displayed -->
+			<div class="col-md-8">
+
+				<div class="gif-style" id="gif-view"></div>
+				
+			</div>
+
+			<!-- Bootstrap column for buttons to be displayed -->
+			<div class="col-md-4">
+				
+				<div class="button-style" id="button-view"></div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+</body>
+</html>
