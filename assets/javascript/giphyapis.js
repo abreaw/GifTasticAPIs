@@ -8,26 +8,12 @@
 var topics = ["pink", "blue", "yellow", "orange", "red", "purple"];
 
 // Divs that we are going to dynamically add to
-// var gifDiv = $("#gif-view");  // gifs go here
 var gifDiv = $("#gif-main");  // gif setup / divs go here
 var btnDiv = $("#button-view");  // buttons go here
 
 // page load variables set 
 var isNewLoad = true;
 var btnCounter = 0;
-
-// setup url parameters for AJAX call (Giphy API)
-// var queryURL = "";
-
-// "https://api.giphy.com/v1/gifs/search";
-// queryURL += '?' + $.param({
-// 	'api_key': "dc6zaTOxFJmzC", // "17JcoWrNVVDQWsQ9fffSXnx1UGkcSdhq",
-// 	'limit': 10,
-// 	'rating': "G",
-// 	'lang': "en",
-// 	'q': "",
-// });
-
 
 // run function to add initial buttons to the page
 addButton();
@@ -100,12 +86,11 @@ $("#add-btn").on("click", function() {
 // ---------------------------------------------------------------------------------------------------------------
 $(btnDiv).on("click", ".gif-get-btn", function () {
 
-	console.log("gif button clicked");
-
 	gifDiv.empty();
 
 	var searchItem = $(this).text();
 
+	// setup url parameters for AJAX call (Giphy API)
 	var queryURL = "https://api.giphy.com/v1/gifs/search";
 	queryURL += '?' + $.param({
 		'api_key': "dc6zaTOxFJmzC", // "17JcoWrNVVDQWsQ9fffSXnx1UGkcSdhq",
@@ -114,19 +99,6 @@ $(btnDiv).on("click", ".gif-get-btn", function () {
 		'lang': "en",
 		'q': searchItem,
 	});
-
-
-	console.log("search for = " + searchItem);
-
-	// queryURL += '&' + $.param({
-	// 	'q': searchItem,
-	// });
-
-	// console.log(queryURL.param.q);
-	// queryURL.param.q = searchItem;
-
-	
-	console.log("API URL: " + queryURL);
 
 	grabAPIData(queryURL);
 
@@ -147,55 +119,26 @@ function grabAPIData(apiURL) {
         .done(function(response) {
           var results = response.data;
 
-          // var bsRowDiv = $("<div class ='row new-row'>");
-          // gifDiv.append(bsRowDiv);
-
-          // var lastRow = $("#gif-main.row:last");
-          // console.log(lastRow.attr("class"));
-
+    	  // iterate thru each response returned by the AJAX call above
           for (var i = 0; i < results.length; i++) {
-            // var gifDiv = $("<div class='item'>");
-
-	        // var lastRow = $("#gif-main.row:last");
-	        // console.log(lastRow);
-
+    
+            // create a new column div for each img
             var bsColDiv = $("<div class='col-md-4'>");
-            console.log(bsColDiv);
-            // var bsRowDiv = $("<div class ='row'>");
-        	// gifDiv.append(bsRowDiv);
-        	// bsRowDiv.append(bsColDiv);
-
+    
             // after 3 iterations create a new row div for the gifs to be in a new row
             if (i%3 === 0) {
 
-            	// console.log("divisible by 3");
             	var bsnewRowDiv = $("<div class ='row'>");
             	bsnewRowDiv.addClass("new-row" + i);
-            	// console.log(bsnewRowDiv.attr("class"));
-            	// console.log("creating new row");
+            	// append row onto the main gif div
             	gifDiv.append(bsnewRowDiv);
-            	// bsnewRowDiv.append(bsColDiv);
-            	// lastRow = bsnewRowDiv;
-
-
-            } // else {
-
-            	// var lastRow = $("row:last");
-            	// console.log("appending to existing row");
-            	// lastRow = $("#gif-main.row:last");
-            	// console.log(lastRow);
-            	// bsnewRowDiv.append(bsColDiv);
-
-            // }
-
-            // lastRow = $("#gif-main row:last");
-            // console.log(lastRow.html());
-            // console.log(lastRow);
-            // lastRow.append(bsColDiv);
+            	
+            } 
+            
+            // append columns to the latest row
             bsnewRowDiv.append(bsColDiv);
 
-            // var thumbnailDiv = $("<div class='thumbnail'>");
-
+            // create the image divs to show in the thumbnail format w/ the caption as the rating
             var imgDiv = $("<div>");
             imgDiv.addClass("thumbnail");
             var caption = $("<div>");
@@ -204,6 +147,7 @@ function grabAPIData(apiURL) {
             var rating = results[i].rating;
             var p = $("<p>").text("Rating: " + rating);
 
+            // create the image tag and add all the needed attributes for the still / animated toggle
             var gifImage = $("<img>");
             gifImage.addClass("gif-img");
             gifImage.attr("id", "gif" + i);
@@ -213,14 +157,12 @@ function grabAPIData(apiURL) {
             gifImage.attr("data-animated-url", results[i].images.fixed_width.url);
             gifImage.attr("data-img-type", "still");
 
-
+            // append / prepend all the new elements to the image div
             bsColDiv.append(imgDiv);
             caption.prepend(p);
             imgDiv.prepend(caption);
             imgDiv.prepend(gifImage);
 
-
-            // $(gifDiv).prepend(imgDiv);
           }
         });
 
@@ -231,8 +173,6 @@ function grabAPIData(apiURL) {
 // process when the gif images are clicked by the user
 // ---------------------------------------------------------------------------------------------------------------
 $("#gif-main").on("click", ".gif-img", function () {
-
-	console.log("image clicked");
 
 	// setup state variable to equal image data-img-type of the image clicked
 	var state = $(this).attr("data-img-type");
