@@ -14,10 +14,13 @@
 }
 
 
-
-
 .button-submit:hover {
 
 	background-color: #cdbfe3;
 	color: gray;
+}
+
+.gif-get-btn {
+
+	margin: 3px;
 }
